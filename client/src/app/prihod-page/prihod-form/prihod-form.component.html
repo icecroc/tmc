@@ -1,0 +1,65 @@
+<div class="page-title">
+  <h4>Приход
+  </h4>
+  <span>
+  </span>
+</div>
+
+<div class="row">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col s12">
+    <mat-form-field *ngIf="noms$ | async as noms;" class="input-field">
+        <mat-label>Номенклатура</mat-label>
+        <mat-select formControlName="nom" id="nom">
+          <mat-option *ngFor="let nom of noms" [value]="nom.name">
+            {{nom.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col s12">
+    <mat-form-field class="input-field" >
+        <mat-label>Еденица измерения</mat-label>
+          <mat-select formControlName="ediz" id="ediz">
+            <mat-option *ngFor="let ediz of edizs" [value]="ediz.name">
+              {{ediz.name}}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col s12">
+    <mat-form-field>
+        <input matInput placeholder="Количество" value="Введите количество"  formControlName="quantity" id="quantity" type="number">
+    </mat-form-field>
+  </div>
+  <div class="col s12">
+    <mat-form-field *ngIf="contrs$ | async as contrs;" class="input-field" >
+        <mat-label>Контрагент</mat-label>
+        <mat-select formControlName="contr" id="contr">
+          <mat-option *ngFor="let contr of contrs" [value]="contr.name">
+            {{contr.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col s12">
+    <mat-form-field>
+        <mat-label>Склад</mat-label>
+        <mat-select  formControlName="sklad" id="sklad">
+          <mat-option *ngFor="let sklad of sklads" [value]="sklad.name">
+            {{sklad.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+
+    <div>
+      <button
+        type="submit"
+        class="waves-effect waves-light btn"
+      >
+        Сохранить изменения
+      </button>
+    </div>
+  </form>
+</div>

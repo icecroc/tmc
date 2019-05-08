@@ -1,0 +1,35 @@
+<div class="page-title">
+  <h4>Контрагенты - список</h4>
+  <button
+    class="waves-effect waves-light btn grey darken-1"
+    routerLink="/contrs/new"
+  >
+    Добавить контрагента
+  </button>
+</div>
+
+<div
+  class="row"
+  *ngIf="contrs$ | async as contrs; else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="contrs.length !== 0; else empty">
+      <a
+        *ngFor="let contr of contrs"
+        [routerLink]="['/contrs', contr._id]"
+        class="collection-item"
+      >
+        {{contr.name}}
+      </a>
+    </div>
+    <ng-template #empty>
+      <div class="center">
+        У вас нет ни одного контрагента
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

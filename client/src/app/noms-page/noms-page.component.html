@@ -1,0 +1,35 @@
+<div class="page-title">
+  <h4>Номенклатуры - список</h4>
+  <button
+    class="waves-effect waves-light btn grey darken-1"
+    routerLink="/noms/new"
+  >
+    Добавить номенклатуру
+  </button>
+</div>
+
+<div
+  class="row"
+  *ngIf="noms$ | async as noms; else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="noms.length !== 0; else empty">
+      <a
+        *ngFor="let nom of noms"
+        [routerLink]="['/noms', nom._id]"
+        class="collection-item"
+      >
+        {{nom.name}}
+      </a>
+    </div>
+    <ng-template #empty>
+      <div class="center">
+        У вас нет ни одной номенклатуры
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

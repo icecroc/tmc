@@ -1,0 +1,53 @@
+<div class="page-title">
+  <h4>Приходы</h4>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFiltered()
+    }"
+    data-tooltip="Открыть фильтр"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+  <button class="waves-effect waves-light btn grey darken-1"
+          routerLink="/prihod/new">
+    Добавить приход
+  </button>
+</div>
+
+<!--<app-history-filter
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+></app-history-filter> -->
+
+<div *ngIf="!reloading; else reloadingBlock">
+  <div *ngIf="prihods.length > 0; else empty">
+    <app-prihod-list [prihods]="prihods"></app-prihod-list>
+    <div
+      class="center mb2"
+      *ngIf="!noMorePrihods"
+    >
+      <button
+        class="btn waves-effect grey darken-1 btn-small"
+        (click)="loadMore()"
+        *ngIf="!loading; else loader"
+      >
+        Загрузить еще
+      </button>
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #empty>
+    <div class="center">Список пуст</div>
+  </ng-template>
+</div>
+
+<ng-template #reloadingBlock>
+  <app-loader></app-loader>
+</ng-template>

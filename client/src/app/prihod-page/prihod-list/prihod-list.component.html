@@ -1,0 +1,68 @@
+<table class="highlight mb2">
+  <thead>
+  <tr>
+    <th>Наименование</th>
+    <th>Еденица измерения + Количество</th>
+    <th>Дата</th>
+    <th>Поставщик</th>
+    <th>Склад</th>
+    <th>Заводящий</th>
+    <th>Статус</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let prihod of prihods">
+    <td>{{prihod.nom}}</td>
+    <td>{{prihod.ediz + prihod.quantity}}</td>
+    <td>{{prihod.date | date:'dd.MM.yyyy  в HH:mm'}}</td>
+    <td>{{prihod.contr}}</td>
+    <td>{{prihod.sklad}}</td>
+    <td>{{prihod.prihodUser}}</td>
+    <th>{{prihod.status}}</th>
+    <td></td>
+    <td>
+      <!--<button class="btn btn-small grey darken-1" (click)="selectPrihod(prihod)">
+        <i class="material-icons">open_in_new</i>
+      </button>-->
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<!--<div class="modal modal-fixed-footer" #modal>
+  <div class="modal-content" *ngIf="selectedOrder">
+    <h4 class="mb1">Заказ №{{selectedOrder.order}}</h4>
+    <table class="highlight">
+      <thead>
+      <tr>
+        <th>Название</th>
+        <th>Значение</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let item of selectedOrder.list">
+        <td>{{item.name}}</td>
+        <td>{{item.content}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button
+      class="modal-action waves-effect waves-black btn-flat"
+      (click)="delete()">
+      Удалить
+    </button>
+    <button
+      class="modal-action waves-effect waves-black btn-flat"
+      (click)="closeModal()"
+    >
+      Закрыть
+    </button>
+  </div> 
+    
+</div> -->
